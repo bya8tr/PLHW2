@@ -47,10 +47,10 @@ that cubes a parameter
 
 let cube x = x * x * x;;
 
-(* 
+
    assert( cube 1 = 1);;
    assert( cube 3 = 27);;
-*)
+
 (*
    Other test cases run:
 *)
@@ -65,10 +65,10 @@ that cubes a parameter
 
 let cubef x = x *. x *. x;;
 
-(* 
+
    assert( cubef 1. = 1.);;
    assert( cubef 3. = 27.);;
-*)
+
 (*
    Other test cases run:
 *)
@@ -83,10 +83,10 @@ that increases an integer by 1
 
 let increment x = x + 1;;
 
-(* 
+
    assert( increment 7 = 8);;
    assert( increment 100 = 101);;
-*)
+
 (*
    Other test cases run:
 *)
@@ -101,10 +101,10 @@ that adds an exclamation point on to the end of a string
 
 let excited x = x ^ "!";;
 
-(* 
+
    assert( excited "hi" = "hi!");;
    assert( excited "R" = "R!");;
-*)
+
 (*
    Other test cases run:
 *)
@@ -119,11 +119,11 @@ that determines if a number is less than 5
 
 let less_than_5 x = x < 5;;
 
-(* 
+
 	assert( less_than_5 3 = true);;
 	assert( less_than_5 7 = false);;
 	assert( less_than_5 5 = false);;
-*)
+
 (*
    Other test cases run:
 *)
@@ -138,10 +138,10 @@ that always evaluates to the unit type
 
 let the_unit_value x = ();;
 
-(* 
+
 	assert( the_unit_value 0 = ());;
 	assert( the_unit_value 7 = ());;
-*)
+
 (*
    Other test cases run:
 *)
@@ -156,12 +156,12 @@ that determines if a number is between 5 and 10 (exclusive)
 
 let middle x = x > 5 && x < 10;;
 
-(* 
+
 	assert( middle 0 = false);;
 	assert( middle 5 = false);;
 	assert( middle 7 = true);;
 	assert( middle 12 = false);;
-*)
+
 (*
    Other test cases run:
 *)
@@ -176,12 +176,12 @@ that determines if a number is between 5 and 10 (exclusive)
 
 let middlef x = x > 5. && x < 10.;;
 
-(* 
+
 	assert( middlef 0.3 = false);;
 	assert( middlef 5.0 = false);;
 	assert( middlef 9.99 = true);;
 	assert( middlef 14.1 = false);;
-*)
+
 (*
    Other test cases run:
 *)
