@@ -2,8 +2,8 @@
 
 HW02
  
-Team Members (computingID, Name): 
-List of sources used (or 'none'): 
+Team Members (computingID, Name): (vjz3qz, Varun Pasupuleti), (bya8tr, Nachiket Gusani), (hmz4kf, Adarsh Mohanraju), (ewq2yy, Krish Kothari), (wah6ne, Avish Chiranth)
+List of sources used (or 'none'): none
 
 HW02 consists of writing a number of OCaml functions. For each exercise below,
 create an OCaml function that will perform the specified task.
