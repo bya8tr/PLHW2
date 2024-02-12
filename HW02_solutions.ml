@@ -45,7 +45,7 @@ Goal: Write a function, cube, of type
 that cubes a parameter
 *)
 
-let cube x = x * x * x;;;
+let cube x = x * x * x;;
 
 (* 
    assert( cube 1 = 1);;
@@ -63,7 +63,7 @@ Goal: Write a function, cubef, of type
 that cubes a parameter
 *)
 
-let cubef x = x *. x *. x;;;
+let cubef x = x *. x *. x;;
 
 (* 
    assert( cubef 1. = 1.);;
@@ -81,7 +81,7 @@ Goal: Write a function, increment, of type
 that increases an integer by 1
 *)
 
-let increment x = x + 1;;;
+let increment x = x + 1;;
 
 (* 
    assert( increment 7 = 8);;
@@ -99,7 +99,7 @@ Goal: Write a function, excited, of type
 that adds an exclamation point on to the end of a string
 *)
 
-let excited x = x ^ "!";;;
+let excited x = x ^ "!";;
 
 (* 
    assert( excited "hi" = "hi!");;
@@ -117,7 +117,7 @@ Goal: Write a function, less_than_5, of type
 that determines if a number is less than 5
 *)
 
-let less_than_5 x = x < 5;;;
+let less_than_5 x = x < 5;;
 
 (* 
 	assert( less_than_5 3 = true);;
@@ -136,7 +136,7 @@ Goal: Write a function, the_unit_value, of type
 that always evaluates to the unit type
 *)
 
-let the_unit_value x = ();;;
+let the_unit_value x = ();;
 
 (* 
 	assert( the_unit_value 0 = ());;
@@ -154,7 +154,7 @@ Goal: Write a function, middle, of type
 that determines if a number is between 5 and 10 (exclusive) 
 *)
 
-let middle x = x > 5 && x < 10;;;
+let middle x = x > 5 && x < 10;;
 
 (* 
 	assert( middle 0 = false);;
@@ -174,7 +174,7 @@ Goal: Write a function, middlef, of type
 that determines if a number is between 5 and 10 (exclusive) 
 *)
 
-let middlef x = x > 5. && x < 10.;;;
+let middlef x = x > 5. && x < 10.;;
 
 (* 
 	assert( middlef 0.3 = false);;
