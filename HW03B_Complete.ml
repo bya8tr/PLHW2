@@ -43,7 +43,7 @@ let rec less = function
  * val less_tail : 'a * 'a list -> 'a list 
  *)
 
-let less_tail (e, lst) =
+let less_tail (e, lst) = (* WRONG *)
   let rec aux acc = function
     | [] -> List.rev acc  
     | x::xs -> if x < e then aux (x::acc) xs else aux acc xs
@@ -55,7 +55,7 @@ let less_tail (e, lst) =
  *  
  * val repeats : 'a list -> bool 
  *)
-let rec repeats = function
+let rec repeats = function (* correct *)
   | [] | [_] -> false 
   | x::y::xs -> if x = y then true else repeats (y::xs);;
 
@@ -73,7 +73,7 @@ let rec repeats = function
  * 
  * val eval : float * float list -> float 
  *)
- let eval (x, coefficients) =
+ let eval (x, coefficients) = (* correct *)
   let rec aux acc power = function
     | [] -> acc
     | c::cs -> aux (acc +. c *. (x ** power)) (power +. 1.) cs
@@ -85,7 +85,7 @@ let rec repeats = function
  *
  * val is_member : 'a * 'a list -> bool
  *)
-let rec is_member = function
+let rec is_member = function (* correct *)
   | (_, []) -> false
   | (e, x::xs) -> if e = x then true else is_member (e, xs);;
 
@@ -98,9 +98,14 @@ let rec is_member = function
  *
  * val remove_after_e : 'a * 'a list -> 'a list 
  *)  
-let rec remove_after_e = function
-  | (_, []) -> []  (* Base case: empty list *)
-  | (e, x::xs) -> if x = e then [x] else x :: remove_after_e (e, xs);;
+
+let remove_after_e (e, list) =
+  let rec aux found acc = function
+    | [] -> if found then List.rev acc else []
+    | x::xs -> if x = e then List.rev (x::acc) else aux found (x::acc) xs
+  in
+  aux false [] list
+
 
 (*
  * Removes the first occurrence of `e` from the list `list`
@@ -108,7 +113,7 @@ let rec remove_after_e = function
  *  
  * val remove_first : 'a * 'a list -> 'a list 
  *)
- let rec remove_first = function
+ let rec remove_first = function (* correct *)
   | (_, []) -> []  (* Base case: empty list *)
   | (e, x::xs) -> if x = e then xs else x :: remove_first (e, xs);;
 
@@ -118,7 +123,7 @@ let rec remove_after_e = function
  *  
  * val remove_all : 'a * 'a list -> 'a list 
  *)
-let rec remove_all = function
+let rec remove_all = function (* correct *)
   | (_, []) -> []  (* Base case: empty list *)
   | (e, x::xs) -> if x = e then remove_all (e, xs) else x :: remove_all (e, xs);;
 
@@ -130,8 +135,37 @@ let rec remove_all = function
  *
  * val remove_if_not : ('a -> bool) * 'a list -> 'a list 
  *)
-let rec remove_if_not (test_fn, lst) =
-  match lst withs
-  | [] -> []  (* Base case: empty list *)
+let rec remove_if_not (test_fn, lst) = (* correct *)
+  match lst with
+  | [] -> []  
   | x::xs -> if test_fn x then x :: remove_if_not (test_fn, xs) else remove_if_not (test_fn, xs);;
 
+
+  let () =
+  assert (remove_first (1, [1; 2; 3]) = [2; 3]);
+  (* assert (remove_first (1, [3; 2; 1]) = [3; 2; 1]); *)
+  assert (remove_after_e (4, [1; 2; 3]) = []);
+  assert (less (5, [1; 2; 3; 4; 5; 6; 7]) = [1; 2; 3; 4]);
+  assert (less_tail (5, [1; 2; 3; 4; 5; 6; 7]) = [1; 2; 3; 4]);
+  assert (repeats [1; 2; 2; 3] = true);
+  assert (eval (2.0, [1.0; 5.0; 3.0]) = 23.0);
+  assert (is_member (2, [1; 2; 3]) = true);
+
+
+  assert (less (3, [1; 2; 3; 4; 5]) = [1; 2]);
+  assert (less (5, [1; 2; 3; 4; 5]) = [1; 2; 3; 4]);
+  assert (less_tail (3, [1; 2; 3; 4; 5]) = [1; 2]);
+  assert (less_tail (5, [1; 2; 3; 4; 5]) = [1; 2; 3; 4]);
+  assert (repeats [1; 2; 3; 4; 5] = false);
+  assert (repeats [1; 2; 3; 3; 4; 5] = true);
+  assert (eval (2.0, [1.0; 5.0; 3.0]) = 23.0);
+  assert (is_member (3, [1; 2; 3; 4; 5]) = true);
+  assert (is_member (6, [1; 2; 3; 4; 5]) = false);
+  assert (remove_after_e (3, [1; 2; 3; 4; 5]) = [1; 2; 3]);
+  assert (remove_after_e (6, [1; 2; 3; 4; 5]) = []);
+  assert (remove_first (3, [1; 2; 3; 4; 5]) = [1; 2; 4; 5]);
+  assert (remove_first (6, [1; 2; 3; 4; 5]) = [1; 2; 3; 4; 5]);
+  assert (remove_all (3, [1; 2; 3; 4; 5]) = [1; 2; 4; 5]);
+  assert (remove_all (6, [1; 2; 3; 4; 5]) = [1; 2; 3; 4; 5]);
+  assert (remove_if_not ((fun x -> x mod 2 = 0), [1; 2; 3; 4; 5]) = [2; 4]);
+  assert (remove_if_not ((fun x -> x mod 2 = 0), [1; 3; 5]) = []);
